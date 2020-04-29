@@ -117,91 +117,93 @@ class CostManagementList extends React.Component {
           color: '#fff',
           onPress: () => this.props.navigation.navigate("Module_3"),
           }}
-          centerComponent={{ text: 'PROJECT COST MANAGEMENT', style: { color: '#fff' } }}
+          centerComponent={{ text: 'Sub Module Topics', style: { color: '#fff' } }}
         />
         <NestedListView
           data={data}
           getChildrenName={(node) => 'items'}
           onNodePressed={(node) => {
 
-            switch(node.idName){
+            this.props.navigation.navigate('TopicSwiper')
+
+            //switch(node.idName){
 
               //Introduction
-              case "INT_IntroVideo":
-                this.props.navigation.navigate("IntroductionVideo")
-                break
+              // case "INT_IntroVideo":
+              //   this.props.navigation.navigate("IntroductionVideo")
+              //   break
         
-              case "INT_ContentOverall":
-                this.props.navigation.navigate('IntroductionTheory')
-                break
+              // case "INT_ContentOverall":
+              //   this.props.navigation.navigate('IntroductionTheory')
+              //   break
 
-              case "INT_Activities":
-                  this.props.navigation.navigate('IntroductionActivities')
-                  break
+              // case "INT_Activities":
+              //     this.props.navigation.navigate('IntroductionActivities')
+              //     break
 
-              //Estimating tabs
-              case "EST_TypesOfCosts":
-                this.props.navigation.navigate("EstimatingTypesCost")
-                break
+              // //Estimating tabs
+              // case "EST_TypesOfCosts":
+              //   this.props.navigation.navigate("EstimatingTypesCost")
+              //   break
         
-              case "EST_Inputs":
-                this.props.navigation.navigate('EstimatingInput')
-                break
+              // case "EST_Inputs":
+              //   this.props.navigation.navigate('EstimatingInput')
+              //   break
 
-              case "EST_ToolsAndTechniques":
-                  this.props.navigation.navigate('EstimatingTools')
-                  break
+              // case "EST_ToolsAndTechniques":
+              //     this.props.navigation.navigate('EstimatingTools')
+              //     break
 
-              case "EST_Outputs":
-                  this.props.navigation.navigate('EstimatingOutputs')
-                  break
+              // case "EST_Outputs":
+              //     this.props.navigation.navigate('EstimatingOutputs')
+              //     break
 
-              case "EST_Activities":
-                  this.props.navigation.navigate('EstimatingActivities')
-                  break
+              // case "EST_Activities":
+              //     this.props.navigation.navigate('EstimatingActivities')
+              //     break
 
-              //Budgeting tabs
-              case "BUD_Introduction":
-                this.props.navigation.navigate("BudgetingIntro")
-                break
+              // //Budgeting tabs
+              // case "BUD_Introduction":
+              //   this.props.navigation.navigate("BudgetingIntro")
+              //   break
         
-              case "BUD_Inputs":
-                this.props.navigation.navigate('BudgetingInputs')
-                break
+              // case "BUD_Inputs":
+              //   this.props.navigation.navigate('BudgetingInputs')
+              //   break
 
-              case "BUD_ToolsAndTechniques":
-                  this.props.navigation.navigate('BudgetingTools')
-                  break
+              // case "BUD_ToolsAndTechniques":
+              //     this.props.navigation.navigate('BudgetingTools')
+              //     break
 
-              case "BUD_Outputs":
-                  this.props.navigation.navigate('BudgetingOutputs')
-                  break
+              // case "BUD_Outputs":
+              //     this.props.navigation.navigate('BudgetingOutputs')
+              //     break
 
-              case "BUD_Activities":
-                  this.props.navigation.navigate('DetermineBudgetActivities')
-                  break
+              // case "BUD_Activities":
+              //     this.props.navigation.navigate('DetermineBudgetActivities')
+              //     break
 
-              //Controlling tabs
-              case "CON_Introduction":
-                this.props.navigation.navigate("ControllingIntro")
-                break
+              // //Controlling tabs
+              // case "CON_Introduction":
+              //   this.props.navigation.navigate("ControllingIntro")
+              //   break
         
-              case "CON_Inputs":
-                this.props.navigation.navigate('ControllingInputs')
-                break
+              // case "CON_Inputs":
+              //   this.props.navigation.navigate('ControllingInputs')
+              //   break
 
-              case "CON_ToolsAndTechniques":
-                  this.props.navigation.navigate('ControllingTools')
-                  break
+              // case "CON_ToolsAndTechniques":
+              //     this.props.navigation.navigate('ControllingTools')
+              //     break
 
-              case "CON_Outputs":
-                  this.props.navigation.navigate('ControllingOutputs')
-                  break
+              // case "CON_Outputs":
+              //     this.props.navigation.navigate('ControllingOutputs')
+              //     break
 
-              case "CON_Activities":
-                  this.props.navigation.navigate('ControlCostsActivities')
-                  break
-            }
+              // case "CON_Activities":
+              //     this.props.navigation.navigate('ControlCostsActivities')
+              //     break
+            //}
           }}
           renderNode={(node, level) => (
             <NestedRow

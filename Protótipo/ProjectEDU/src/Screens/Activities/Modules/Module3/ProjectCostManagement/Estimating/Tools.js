@@ -8,6 +8,65 @@ import LessonHeader from '../../../LessonHeader.js'
 //Project Cost Management - Module Estimating - Tools
 class  PCM_EstimatingToolsScreen extends React.Component {
      
+  finishSubTopic(mainTopic, subTopic){
+
+    mainTopicIsValid = false
+    subTopicIsValid = false
+
+    //checks if the maintopic and subtopic are non null
+    if(mainTopic == null || subTopic == null){
+      alert("Faild to update data base\nMain Topic or Sub Topic null")
+      return
+    }
+
+    //checks if the main topic exists in the data base and gets its reference
+    let userid = firebase.auth().currentUser.uid
+    let userRef = firebase.database().ref("/module3/Project Cost Management/" + userid)
+
+    userRef.once('value', (snapshot) => {
+      if (snapshot.hasChild(mainTopic))
+        mainTopicIsValid = true
+    });
+
+    if(!mainTopicIsValid){
+      alert("\nMain topic is undefined\n(" + mainTopic + ") is not a valid argument")
+      return
+    }
+
+    let topicRef = firebase.database().ref("/module3/Project Cost Management/" + userid + "/" + mainTopic)
+    
+    
+    //checks if the sub topic exists in the data base and gets its reference
+    topicRef.once('value', (snapshot) => {
+      if (snapshot.hasChild(subTopic))
+        subTopicIsValid = true
+    });
+
+    if(!subTopicIsValid){
+      alert("\nSub topic is undefined\n(" + subTopic + ") is not a valid argument")
+      return
+    }
+
+    let subTopicRef = firebase.database().ref("/module3/Project Cost Management/" + userid + "/" + mainTopic + "/" + subTopic)
+
+    //marks the subtopic as completed
+    subTopicRef.update({checkmark: true})
+
+    //checks if all subtopics are completed
+    allChecked = true
+    
+    topicRef.orderByChild("id").on("child_added", (data) => {
+      if(data.val().displayTitle != null && !data.val().checkmark){
+        allChecked = false
+      }
+    })
+
+    //marks the main topic as completed, if all the subtopics have been completed
+    topicRef.update({checkmark: allChecked})
+
+    this.props.navigation.navigate("ListCostManagement")
+  }
+
     render() {
   
     return (
@@ -23,7 +82,6 @@ class  PCM_EstimatingToolsScreen extends React.Component {
          width:Dimensions.get("window").width,
          justifyContent: 'center',
          alignItems:"center",
-         marginTop:-70,
          backgroundColor:"#0abde3"
       }}>
         <View style = {{alignItems:"center"}}>
@@ -36,7 +94,7 @@ class  PCM_EstimatingToolsScreen extends React.Component {
 
       {/*First Screen */}
       <View style={styles.container}>
-        <View style = {{ alignItems:"center",marginTop:40}}>
+        <View style = {{ alignItems:"center"}}>
         <LessonHeader centerText='Estimate Costs' navigation={this.props.navigation}/>
         </View>
         
@@ -74,7 +132,7 @@ class  PCM_EstimatingToolsScreen extends React.Component {
       {/*Second Screen */}
       <View style={styles.container}>
         
-        <View style = {{ alignItems:"center",marginTop:-20}}>
+        <View style = {{ alignItems:"center"}}>
         <LessonHeader centerText='Estimate Costs' navigation={this.props.navigation}/>
         </View>
 
@@ -107,7 +165,7 @@ class  PCM_EstimatingToolsScreen extends React.Component {
 
       {/*Third Screen */}
       <View style={styles.container}>
-        <View style = {{ alignItems:"center",marginTop:30}}>
+        <View style = {{ alignItems:"center"}}>
         <LessonHeader centerText='Estimate Costs' navigation={this.props.navigation}/>
         </View>
        
@@ -139,7 +197,7 @@ class  PCM_EstimatingToolsScreen extends React.Component {
 
       {/*Fourth Screen */}
       <View style={styles.container}>
-        <View style = {{ alignItems:"center",marginTop:0}}>
+        <View style = {{ alignItems:"center"}}>
         <LessonHeader centerText='Estimate Costs' navigation={this.props.navigation}/>
         </View>
         
@@ -174,7 +232,7 @@ class  PCM_EstimatingToolsScreen extends React.Component {
 
       {/*Fifth Screen */}
       <View style={styles.container}>
-        <View style = {{ alignItems:"center",marginTop:30}}>
+        <View style = {{ alignItems:"center"}}>
         <LessonHeader centerText='Estimate Costs' navigation={this.props.navigation}/>
         </View>
         
@@ -209,7 +267,7 @@ class  PCM_EstimatingToolsScreen extends React.Component {
       {/*Sixth Screen */}
       <View style={styles.container}>
         
-        <View style = {{ alignItems:"center",marginTop:10}}>
+        <View style = {{ alignItems:"center"}}>
         <LessonHeader centerText='Estimate Costs' navigation={this.props.navigation}/>
         </View>
        
@@ -242,7 +300,7 @@ class  PCM_EstimatingToolsScreen extends React.Component {
 
       {/*Seventh Screen */}
       <View style={styles.container}>
-        <View style = {{ alignItems:"center",marginTop:10}}>
+        <View style = {{ alignItems:"center"}}>
         <LessonHeader centerText='Estimate Costs' navigation={this.props.navigation}/>
         </View>
         
@@ -282,7 +340,7 @@ class  PCM_EstimatingToolsScreen extends React.Component {
       </View>
       {/*Eighth Screen */}
       <View style={styles.container}>
-        <View style = {{ alignItems:"center",marginTop:10}}>
+        <View style = {{ alignItems:"center"}}>
         <LessonHeader centerText='Estimate Costs' navigation={this.props.navigation}/>
         </View>
     
@@ -317,7 +375,7 @@ class  PCM_EstimatingToolsScreen extends React.Component {
 
       {/*Nineth Screen */}
       <View style={styles.container}>
-        <View style = {{ alignItems:"center",marginTop:-70}}>  
+        <View style = {{ alignItems:"center"}}>  
         <LessonHeader centerText='Estimate Costs' navigation={this.props.navigation}/>
         </View>
 
@@ -356,7 +414,7 @@ class  PCM_EstimatingToolsScreen extends React.Component {
 
       {/*Tenth Screen */}
       <View style={styles.container}>
-      <View style = {{ alignItems:"center",marginTop:-20}}>
+      <View style = {{ alignItems:"center"}}>
       <LessonHeader centerText='Estimate Costs' navigation={this.props.navigation}/>
       </View>
      
@@ -390,12 +448,11 @@ class  PCM_EstimatingToolsScreen extends React.Component {
       <View style={{
          flex:1,
          width:Dimensions.get("window").width,
-         justifyContent: 'center',
+         //justifyContent: 'center',
          alignItems:"center",
-         marginTop:-70,
          backgroundColor:"#97CAE5"
       }}>
-        <View style = {{marginTop:-100, alignItems:"center",}}>
+        <View style = {{alignItems:"center",}}>
         <LessonHeader centerText='Estimate Costs' navigation={this.props.navigation}/>
         </View>
         
@@ -407,7 +464,7 @@ class  PCM_EstimatingToolsScreen extends React.Component {
         </View>
           {/*Button - Project Cost Management - Module Estimating - Outputs */}
           <TouchableHighlight style={[styles.buttonContainer, styles.activitiesButton]} 
-            onPress={() => this.props.navigation.navigate("ListCostManagement")}>
+            onPress={() => {this.finishSubTopic("Estimating", "EST_ToolsAndTechniques")}}>
               <Text style={styles.buttonText}>Continue studying</Text>
           </TouchableHighlight>
           
@@ -423,9 +480,9 @@ const styles = StyleSheet.create({
     container: {
         flex:1,
         width:Dimensions.get("window").width,
-        justifyContent: 'center',
+        //justifyContent: 'center',
         alignItems:"center",
-        marginTop:-20
+        //marginTop:-20
     },
     containerProgress:{
       marginTop:5,

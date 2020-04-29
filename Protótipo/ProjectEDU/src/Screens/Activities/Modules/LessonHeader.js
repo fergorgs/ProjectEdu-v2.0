@@ -1,6 +1,7 @@
 import React from 'react';
 import { Alert } from 'react-native';
-import {Header,Icon} from 'react-native-elements'
+import {Header,Icon} from 'react-native-elements';
+import {StyleSheet} from 'react-native';
 
 class LessonHeader extends React.Component{
 
@@ -8,7 +9,7 @@ render() {
 
     return (
         <Header
-            backgroundColor = '#1e272e'
+            backgroundColor='#1e272e'
             leftComponent={{
             icon: 'clear',
             color: '#fff',
@@ -31,5 +32,12 @@ render() {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  headerStyle: {
+    backgroundColor: '#1e272e',
+    height: 50
+  }
+})
 
 export default LessonHeader

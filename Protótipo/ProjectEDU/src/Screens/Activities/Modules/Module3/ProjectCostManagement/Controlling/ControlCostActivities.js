@@ -1,5 +1,5 @@
 import React from 'react';
-import { View,StyleSheet,Image,Text,Dimensions,Alert} from 'react-native';
+import { View,ScrollView,StyleSheet,Image,Text,Dimensions,Alert} from 'react-native';
 import {Header,Card,Button} from 'react-native-elements'
 import { createSwitchNavigator} from 'react-navigation'
 import Modal from 'react-native-modal'
@@ -20,6 +20,7 @@ class PCM_ControlCostsActivity1Screen extends React.Component {
       isPressed4:false
     };
 }
+
  //Function that analyses if the question is correct
   onPressConfirm()
   {
@@ -346,6 +347,68 @@ class PCM_ControlCostsActivity3Screen extends React.Component {
       points:'',
       progress:'',
 }
+
+
+finishSubTopic(mainTopic, subTopic){
+
+  mainTopicIsValid = false
+  subTopicIsValid = false
+
+  //checks if the maintopic and subtopic are non null
+  if(mainTopic == null || subTopic == null){
+    alert("Faild to update data base\nMain Topic or Sub Topic null")
+    return
+  }
+
+  //checks if the main topic exists in the data base and gets its reference
+  let userid = firebase.auth().currentUser.uid
+  let userRef = firebase.database().ref("/module3/Project Cost Management/" + userid)
+
+  userRef.once('value', (snapshot) => {
+    if (snapshot.hasChild(mainTopic))
+      mainTopicIsValid = true
+  });
+
+  if(!mainTopicIsValid){
+    alert("\nMain topic is undefined\n(" + mainTopic + ") is not a valid argument")
+    return
+  }
+
+  let topicRef = firebase.database().ref("/module3/Project Cost Management/" + userid + "/" + mainTopic)
+  
+  
+  //checks if the sub topic exists in the data base and gets its reference
+  topicRef.once('value', (snapshot) => {
+    if (snapshot.hasChild(subTopic))
+      subTopicIsValid = true
+  });
+
+  if(!subTopicIsValid){
+    alert("\nSub topic is undefined\n(" + subTopic + ") is not a valid argument")
+    return
+  }
+
+  let subTopicRef = firebase.database().ref("/module3/Project Cost Management/" + userid + "/" + mainTopic + "/" + subTopic)
+
+  //marks the subtopic as completed
+  subTopicRef.update({checkmark: true})
+
+  //checks if all subtopics are completed
+  allChecked = true
+  
+  topicRef.orderByChild("id").on("child_added", (data) => {
+    if(data.val().displayTitle != null && !data.val().checkmark){
+      allChecked = false
+    }
+  })
+
+  //marks the main topic as completed, if all the subtopics have been completed
+  topicRef.update({checkmark: allChecked})
+
+  this.props.navigation.navigate("ListCostManagement")
+}
+
+
 //Receive user information from the database
 componentDidMount(){
   let userid = firebase.auth().currentUser.uid
@@ -363,9 +426,9 @@ componentDidMount(){
     //If the answer is corret go to another question
     if(this.state.isCorrect==true)
     {
-      this.onUpdate().then(()=>{
-        this.props.navigation.navigate("PCM_EstimatingFinal")
-      })
+      //this.onUpdate().then(()=>{
+        this.finishSubTopic("Controlling", "CON_Activities")
+      //})
     }
     //Shows a modal - Wrong Answer
     else

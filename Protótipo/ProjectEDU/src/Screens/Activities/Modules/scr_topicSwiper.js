@@ -3,11 +3,11 @@ import {  View,StyleSheet,Dimensions,Image,Text,Alert,TouchableHighlight} from '
 import {Header,Icon} from 'react-native-elements'
 import Swiper from 'react-native-swiper';
 import { createDrawerNavigator} from 'react-navigation'
-import LessonHeader from '../../../LessonHeader.js'
-import * as firebase from 'firebase'
+import TopicPage from './TopicPage'
+import TopicTitle from './TopicTitle'
 
-//Project Cost Management - Module Control Costs - Introduction
-class  PCM_ControlCostIntroScreen extends React.Component {
+//Project Cost Management - Module Estimating - Inputs
+class  PCM_EstimatingInputsScreen extends React.Component {
 
   finishSubTopic(mainTopic, subTopic){
 
@@ -67,109 +67,70 @@ class  PCM_ControlCostIntroScreen extends React.Component {
 
     this.props.navigation.navigate("ListCostManagement")
   }
-
-
-  render() {
+     
+    render() {
   
     return (
-      //Swiper for the Screens
-      <Swiper
+    //Swiper for the Screens
+    <Swiper
         showsButtons={false} 
         autoplay={false}
         loop = {true}
     >
-    {/*Initial Screen - Introduction */}
-    <View style={{
-           flex:1,
-           width:Dimensions.get("window").width,
-           justifyContent: 'center',
-           alignItems:"center",
-           marginTop:-70,
-           backgroundColor:"#0abde3"
-        }}>
-          <View style = {{alignItems:"center"}}>
-            <Text style = {{textAlign:"center",fontSize:40}}>
-              Introduction
-            </Text>
-          </View>
-          
+      <TopicTitle></TopicTitle>
+      <TopicPage></TopicPage>
+      <TopicEnd></TopicEnd>
+{/*Screen with Inputs - First Screen */}
+{/* <View style={styles.container}>
+        
+        <View style = {{ alignItems:"center"}}>
+        <LessonHeader centerText='Estimate Costs' navigation={this.props.navigation}/>
         </View>
-      
-      {/*1th Screen */}
-      <View style={styles.container}>
 
-          <View style = {{ alignItems:"center"}}>
-            <LessonHeader centerText='Control Costs' navigation={this.props.navigation}/>
-          </View>
-          
-          <Text style={styles.textTitle}>
-             Controlling the Costs
-          </Text>
-          <Text style={styles.textInfo}>
-            Provides the means to recognize variance, from the plan
-            in order to take corrective action, and minimize risk.
-          </Text>
-          <View style={styles.containerImages}>
-            <Image
-                style={{
-                    width:350,
-                    height:200,
-                    marginTop:50
-                }}
-                source={{uri: 'https://managecasa.com/wp-content/uploads/2018/09/canstockphotocosts-700x460.jpg'}}
-            />
-          </View>  
-  
+        <Text style={styles.textTitle}>
+           Inputs
+        </Text>
+        <Text style={styles.textInfo}>
+          Scope Baseline
+        </Text>
+        <Text style={styles.textInfo}>
+           Project Schedule
+        </Text>
+        <Text style={styles.textInfo}>
+          Human Resource Plan
+        </Text>
+        <Text style={styles.textInfo}>
+          Risk Register
+        </Text>
+        <Text style={styles.textInfo}>
+          Enterprise Enviromental Factors
+        </Text>
+        <Text style={styles.textInfo}>
+          Organizational Process Assets
+        </Text>
+        <View style={styles.containerImages}>
+          <Image
+              resizeMode = "contain"
+              style={{
+                width: 250, 
+                height: 200
+              }}
+              source={{uri: 'https://vmguru.com/wp-content/uploads/2018/10/inputs.png'}}
+          />
         </View>
         
-        {/*2th Screen */}
-        <View style={styles.container}>
-          <View style = {{ alignItems:"center"}}>
-            <LessonHeader centerText='Control Costs' navigation={this.props.navigation}/>
-          </View>
-          
-  
-          <Text style={styles.textTitle}>
-             Decomposition Process
-          </Text>
-          
-          <View style = {{marginTop:40}}>
-            <Text style={styles.textInfo}>
-                Inputs
-            </Text>
-            <Text style={styles.textInfo}>
-                Tools and Techniques
-            </Text>
-            <Text style={styles.textInfo}>
-                Outputs
-          </Text>
-  
-          </View>
-      
-          <View style = {{marginTop:50}}>
-            <Image
-                resizeMode = 'stretch'
-                style={{
-                    width:350,
-                    height:200
-                }}
-                source={{uri: 'https://i0.wp.com/www.whatispmp.com/wp-content/uploads/2018/02/7-3-Control-Costs-Process-Decomposition.png?resize=800%2C330&ssl=1'}}
-            />
-          </View>
-  
-        </View>
-  
-      {/*Last Screen - Project Cost Management - Module Control Costs - Introduction */}
-        <View style={{
-          flex:1,
-          width:Dimensions.get("window").width,
-          justifyContent: 'center',
-          alignItems:"center",
-          //marginTop:-60,
-          backgroundColor:"#97CAE5"
+      </View> */}
+
+      {/*Last Screen - Project Cost Management - Module Estimating - Inputs */}
+      {/* <View style={{
+         flex:1,
+         width:Dimensions.get("window").width,
+         //justifyContent: 'center',
+         alignItems:"center",
+         backgroundColor:"#97CAE5"
       }}>
-        <View style = {{marginTop:-100, alignItems:"center",}}>
-          <LessonHeader centerText='Control Costs' navigation={this.props.navigation}/>
+        <View style = {{alignItems:"center",}}>
+        <LessonHeader centerText='Estimate Costs' navigation={this.props.navigation}/>
         </View>
         
         <View style = {{alignItems:"center",marginTop:40}}>
@@ -177,16 +138,18 @@ class  PCM_ControlCostIntroScreen extends React.Component {
               name='work'
               size = {300}
           />
-        </View>
-          {/*Button - Project Cost Management - Module Control Costs - Inputs */}
-          <TouchableHighlight style={[styles.buttonContainer, styles.activitiesButton]} 
-            onPress={() => {this.finishSubTopic("Controlling", "CON_Introduction")}}>
+        </View> */}
+          
+          {/*Button for Project Cost Management - Module Estimating - Tools */}
+          {/* <TouchableHighlight style={[styles.buttonContainer, styles.activitiesButton]} 
+            onPress={() => {this.finishSubTopic("Estimating", "EST_Inputs")}}>
               <Text style={styles.buttonText}>Continue studying</Text>
           </TouchableHighlight>
           
-      </View>
+      </View> */}
 
-        </Swiper>
+
+    </Swiper>
         )
     }
 }
@@ -195,10 +158,15 @@ const styles = StyleSheet.create({
     container: {
         flex:1,
         width:Dimensions.get("window").width,
+        //justifyContent: 'center',
         alignItems:"center",
+        //marginTop:-20
     },
-      textInfo:
-      {
+    containerProgress:{
+      marginTop:5,
+      alignItems: 'center',
+    },
+      textInfo:{
         textAlign:'center',
         fontSize:20,
         margin:10,
@@ -223,8 +191,9 @@ const styles = StyleSheet.create({
       },
       textSubTitle:{
         textAlign:'center',
-        fontSize:20,
-        margin:5
+        fontSize:15,
+        marginTop:0,
+        marginBottom: 5
       },
       button: {
         borderRadius: 0, 
@@ -266,8 +235,5 @@ const styles = StyleSheet.create({
       backgroundColor: "#3498db",
     },
   });
-
-    
-export default PCM_ControlCostIntroScreen
   
-  
+export default PCM_EstimatingInputsScreen

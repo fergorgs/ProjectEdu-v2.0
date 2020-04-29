@@ -4,6 +4,7 @@ import Module1Screen from './Modules/Module1'   //Introduction
 import Module2Screen from './Modules/Module2'   //Project Management Processes
 import Module3Screen from './Modules/Module3'   //Project Management Knowledge Areas
 import Module4Screen from './Modules/Module4'   //Business Environment in Projects
+import GenericModuleScreen from './Modules/scr_ModuleStackNav'   //Business Environment in Projects
 import MaintenanceScreen from './Maintenance'
 
 export default createStackNavigator({
@@ -35,6 +36,12 @@ export default createStackNavigator({
     screen: Module4Screen,
     navigationOptions : {
       title:"Module 4",
+    }
+  },
+  Generic_Module: {
+    screen: GenericModuleScreen,
+    navigationOptions : {
+      title:"Generic Module Screen",
     }
   },
   Maintenance: {

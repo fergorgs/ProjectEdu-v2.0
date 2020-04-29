@@ -386,6 +386,65 @@ componentDidMount(){
 //Final Screen - Shows user reward for finishing the module
 class PCM_EstimatingFinalScreen extends React.Component {
   
+  finishSubTopic(mainTopic, subTopic){
+
+    mainTopicIsValid = false
+    subTopicIsValid = false
+
+    //checks if the maintopic and subtopic are non null
+    if(mainTopic == null || subTopic == null){
+      alert("Faild to update data base\nMain Topic or Sub Topic null")
+      return
+    }
+
+    //checks if the main topic exists in the data base and gets its reference
+    let userid = firebase.auth().currentUser.uid
+    let userRef = firebase.database().ref("/module3/Project Cost Management/" + userid)
+
+    userRef.once('value', (snapshot) => {
+      if (snapshot.hasChild(mainTopic))
+        mainTopicIsValid = true
+    });
+
+    if(!mainTopicIsValid){
+      alert("\nMain topic is undefined\n(" + mainTopic + ") is not a valid argument")
+      return
+    }
+
+    let topicRef = firebase.database().ref("/module3/Project Cost Management/" + userid + "/" + mainTopic)
+    
+    
+    //checks if the sub topic exists in the data base and gets its reference
+    topicRef.once('value', (snapshot) => {
+      if (snapshot.hasChild(subTopic))
+        subTopicIsValid = true
+    });
+
+    if(!subTopicIsValid){
+      alert("\nSub topic is undefined\n(" + subTopic + ") is not a valid argument")
+      return
+    }
+
+    let subTopicRef = firebase.database().ref("/module3/Project Cost Management/" + userid + "/" + mainTopic + "/" + subTopic)
+
+    //marks the subtopic as completed
+    subTopicRef.update({checkmark: true})
+
+    //checks if all subtopics are completed
+    allChecked = true
+    
+    topicRef.orderByChild("id").on("child_added", (data) => {
+      if(data.val().displayTitle != null && !data.val().checkmark){
+        allChecked = false
+      }
+    })
+
+    //marks the main topic as completed, if all the subtopics have been completed
+    topicRef.update({checkmark: allChecked})
+
+    this.props.navigation.navigate("ListCostManagement")
+  }
+
   render() {
     return (
       <View style={styles.container}>

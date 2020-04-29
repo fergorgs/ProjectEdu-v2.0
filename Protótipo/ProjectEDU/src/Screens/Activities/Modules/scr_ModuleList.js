@@ -1,75 +1,24 @@
 import React, { Component } from 'react';
 import {StyleSheet,Text,ScrollView, Image,FlatList,TouchableOpacity,Dimensions,View} from 'react-native';
 import {Header} from 'react-native-elements'
-import ModuleIcon from '../ModuleIcon'
+import ModuleIcon from './ModuleIcon.js'
+//import MainData from './MainData.js'
 
-export default class Module3 extends Component {
+export default class scr_ModuleList extends Component {
 
-    constructor(props) {
+  constructor(props) {
         super(props);
         this.state = {
-          data: [
+
+          //temp: MainData,
+          subModules: [
             //Module 3 - List of Activities
             {
-                id:0,
-                name: "Project Integration Management",
-                navigation:"MaintenanceModule3",
-                image:"https://edwiser.org/wp-content/uploads/2015/06/3.png"
-            },
-            {   
-                id:1,
-                name: "Project Scope Management",
-                navigation:"MaintenanceModule3",
-                image:"https://clearbridgemobile.com/wp-content/uploads/2015/08/Screen-Shot-2015-08-13-at-4.01.03-PM.png"
-            },
-            {   
-                id:2,  
-                name: "Project Schedule Management",
-                navigation:"MaintenanceModule3",
-                image:"https://p6cdn4static.sharpschool.com/UserFiles/Servers/Server_117263/Image/schedule.jpg"
-            },
-            {
-                id:3,  
-                name: "Project Cost Management",
-                navigation:"ProjectCostManagement",
+                id:0,  
+                name: "Sub Module 1",
+                navigation:"subModules",
                 image:"http://www.orbitinformatics.com/wp-content/uploads/2018/03/money.png"
-            },
-            {
-                id:4,  
-                name: "Project Quality Management",
-                navigation:"MaintenanceModule3",
-                image:"https://www.hsierra.com/wp-content/uploads/2018/09/hse-quality-assurance.png"
-            },
-            {
-                id:5,  
-                name: "Project Resource Management",   
-                navigation:"MaintenanceModule3",
-                image:"http://ec.europa.eu/environment/resource_efficiency/images/logohp5.png"
-            },
-            {
-                id:6,  
-                name: "Project Communications Management",
-                navigation:"MaintenanceModule3",
-                image:"https://www.communicationmatters.org.uk/sites/default/files/imagefield_thumbs/logos/CAUK_Symbol.png"
-            },
-            {
-                id:7,  
-                name: "Project Risk Management",
-                navigation:"MaintenanceModule3",
-                image:"https://www.kiplinger.com/slideshow/investing/T052-S003-8-risky-stocks-that-are-worth-the-risk/images/intro.jpg"
-            },
-            {
-                id:8,  
-                name: "Project Procurement Management",
-                navigation:"MaintenanceModule3",
-                image:"https://waterfm.com/wp-content/uploads/purchase-order-illustration.jpg"
-            },
-            {
-                id:9,  
-                name:"Project Stakeholder Management",
-                navigation:"MaintenanceModule3",
-                image:"https://www.misoenergy.org/globalassets/stakeholder-engagement/stakeholderengagement.png"
-            },
+            }
           ],
         };
         
@@ -77,6 +26,7 @@ export default class Module3 extends Component {
     
       //Function responsible for navigating between modules
       clickEventListener = (item) => {
+        alert(this.state.temp)
         this.props.navigation.navigate(item.navigation)
       }
     
@@ -94,14 +44,14 @@ export default class Module3 extends Component {
             color: '#fff',
             onPress: () => this.props.navigation.navigate("Activities"),
             }}
-            centerComponent={{ text: 'Module 3', style: { color: '#fff' } }}
+            centerComponent={{ text: 'Test Module', style: { color: '#fff' } }}
         />
         {/*Renders Module 3 List Activities with a FlatList */}
         <View style={styles.container}>
         <FlatList 
           style={styles.contentList}
           columnWrapperStyle={styles.listContainer}
-          data={this.state.data}
+          data={this.state.subModules}
           keyExtractor= {(item) => {
             return (item.id).toString();
           }}

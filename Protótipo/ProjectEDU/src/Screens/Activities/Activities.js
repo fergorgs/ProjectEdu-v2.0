@@ -92,6 +92,21 @@ class Activities extends Component {
             title='View now' />
         </Card>
 
+        {/*Card Module Test*/}
+        <Card
+          image = {{uri:"https://sensedia.com/wp-content/uploads/2017/07/20150224test644-1200x565.jpg"}}
+          title='Generic Module'>
+          <Text style={{marginBottom: 10, textAlign: 'center'}}>
+          Generic Module Title
+          </Text>
+          <Button
+            type="solid"
+            onPress = {() => this.props.navigation.navigate("Generic_Module")}
+            backgroundColor='#03A9F4'
+            buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+            title='View now' />
+        </Card>
+
       </ScrollView>
       )
    }

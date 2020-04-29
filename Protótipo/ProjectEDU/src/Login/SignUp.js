@@ -17,6 +17,7 @@ import DatePicker from 'react-native-datepicker'
 import * as Permissions from 'expo-permissions'
 
 import * as firebase from 'firebase';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default class SignUp extends Component {
 
@@ -84,27 +85,117 @@ export default class SignUp extends Component {
           points:0,
           id:firebase.auth().currentUser.uid
         })
-         //Creates table for Module 3 
+        //Creates table for Module 3 
         //Registering the Module Project Cost Management
         firebase.database().ref("/module3/Project Cost Management/" + userId + "/Introduction").set({
           id:1,
-          title:"Introduction",
-          checkmark:false
+          displayTitle:"Introduction",
+          checkmark:false,
+          INT_IntroVideo: {
+            id:1,
+            displayTitle:"Introduction Video",
+            checkmark:false,
+            idName:"INT_IntroVideo"},
+          INT_ContentOverall: {
+            id:2,
+            displayTitle:"Content Overall",
+            checkmark:false,
+            idName:"INT_ContentOverall"},
+          INT_Activities: {
+            id:3,
+            displayTitle:"Activities",
+            checkmark:false,
+            idName:"INT_Activities"}
         })
         firebase.database().ref("/module3/Project Cost Management/" + userId + "/Estimating").set({
           id:2,
-          title:"Estimating",
-          checkmark:false
+          displayTitle:"Estimating",
+          checkmark:false,
+          EST_TypesOfCosts: {
+            id:1,
+            displayTitle:"Types of Costs",
+            checkmark:false,
+            idName:"EST_TypesOfCosts"},
+          EST_Inputs: {
+            id:2,
+            displayTitle:"Inputs",
+            checkmark:false,
+            idName:"EST_Inputs"},
+          EST_ToolsAndTechniques: {
+            id:3,
+            displayTitle:"Tools and Techniques",
+            checkmark:false,
+            idName:"EST_ToolsAndTechniques"},
+          EST_Outputs: {
+            id:4,
+            displayTitle:"Outputs",
+            checkmark:false,
+            idName:"EST_Outputs"},
+          EST_Activities: {
+            id:5,
+            displayTitle:"Activities",
+            checkmark:false,
+            idName:"EST_Activities"}
         })
         firebase.database().ref("/module3/Project Cost Management/" + userId + "/Budgeting").set({
           id:3,
-          title:"Budgeting",
-          checkmark:false
+          displayTitle:"Budgeting",
+          checkmark:false,
+          BUD_Introduction: {
+            id:1,
+            displayTitle:"Introduction",
+            checkmark:false,
+            idName:"BUD_Introduction"},
+          BUD_Inputs: {
+            id:2,
+            displayTitle:"Inputs",
+            checkmark:false,
+            idName:"BUD_Inputs"},
+          BUD_ToolsAndTechniques: {
+            id:3,
+            displayTitle:"Tool and Techniques",
+            checkmark:false,
+            idName:"BUD_ToolsAndTechniques"},
+          BUD_Outputs: {
+            id:4,
+            displayTitle:"Outputs",
+            checkmark:false,
+            idName:"BUD_Outputs"},
+          BUD_Activitiess: {
+            id:5,
+            displayTitle:"Activities",
+            checkmark:false,
+            idName:"BUD_Activities"}
         })
         firebase.database().ref("/module3/Project Cost Management/" + userId + "/Controlling").set({
           id:4,
-          title:"Controlling",
-          checkmark:false
+          displayTitle:"Controlling",
+          checkmark:false,
+          CON_Introduction: {
+            id:1,
+            displayTitle:"Introduction",
+            checkmark:false,
+            idName:"CON_Introduction"},
+          CON_Inputs: {
+            id:2,
+            displayTitle:"Inputs",
+            checkmark:false,
+            idName:"CON_Inputs"},
+          CON_ToolsAndTechniques: {
+            id:3,
+            displayTitle:"Tool and Techniques",
+            checkmark:false,
+            idName:"CON_ToolsAndTechniques"},
+          CON_Outputs: {
+            id:4,
+            displayTitle:"Outputs",
+            checkmark:false,
+            idName:"CON_Outputs"},
+          CON_Activities: {
+            id:5,
+            displayTitle:"Activities",
+            checkmark:false,
+            idName:"CON_Activities"}
         })
         //Registering the Achievements for each User
         firebase.database().ref("/achievements/" + userId).set({
@@ -287,6 +378,7 @@ export default class SignUp extends Component {
 
     //Renders the Sign Up Screen
     return (
+      <ScrollView>
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
 
         {/*Profile image container*/}
@@ -351,6 +443,7 @@ export default class SignUp extends Component {
               textContentType = "emailAddress"
               keyboardType="email-address"
               underlineColorAndroid='transparent'
+              autoCapitalize = 'none'
               onChangeText={(email) => this.setState({email})}/>
         </View>
         
@@ -363,6 +456,7 @@ export default class SignUp extends Component {
               keyboardType = 'default'
               secureTextEntry={true}
               underlineColorAndroid='transparent'
+              autoCapitalize = 'none'
               onChangeText={(password) => this.setState({password})}/>
         </View>
 
@@ -372,6 +466,7 @@ export default class SignUp extends Component {
           <Text style={styles.signUpText}>Sign up</Text>
         </TouchableHighlight>
       </KeyboardAvoidingView>
+      </ScrollView>
     );
   }
 }
