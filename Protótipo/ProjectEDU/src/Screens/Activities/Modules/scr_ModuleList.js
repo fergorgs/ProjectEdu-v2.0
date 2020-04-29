@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {StyleSheet,Text,ScrollView, Image,FlatList,TouchableOpacity,Dimensions,View} from 'react-native';
 import {Header} from 'react-native-elements'
 import ModuleIcon from './ModuleIcon.js'
-//import MainData from './MainData.js'
+import {data} from './data.js'
 
 export default class scr_ModuleList extends Component {
 
@@ -10,25 +10,27 @@ export default class scr_ModuleList extends Component {
         super(props);
         this.state = {
 
-          //temp: MainData,
-          subModules: [
-            //Module 3 - List of Activities
-            {
-                id:0,  
-                name: "Sub Module 1",
-                navigation:"subModules",
-                image:"http://www.orbitinformatics.com/wp-content/uploads/2018/03/money.png"
-            }
-          ],
+          mainData: data,
         };
-        
       }
+
+  componentWillMount(){
+
+    this.setState({subModules: this.state.mainData.map((subModule, index) =>
     
-      //Function responsible for navigating between modules
-      clickEventListener = (item) => {
-        alert(this.state.temp)
-        this.props.navigation.navigate(item.navigation)
-      }
+      obj = {
+        id:index,
+        name:subModule.moduleContent,
+        concepts:subModule.concepts
+        //navegation:"subModules"
+      }  
+    )})
+  }
+
+  //Function responsible for navigating between modules
+  clickEventListener = (item) => {
+    this.props.navigation.navigate('subModule', {subModule:item.concepts})
+  }
     
 
   render() {

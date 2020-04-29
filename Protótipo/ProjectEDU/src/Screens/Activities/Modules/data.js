@@ -1,4 +1,4 @@
-const data = [
+export const data = [
 	{
 		id: Math.random(),
 		moduleContent: 'Introduction to project management',
@@ -18,9 +18,6 @@ const data = [
 			},
 			{
 				text: 'Quality, in turn, should be defined before starting the project with the customer. Only he will be able to define what quality is.',
-			},
-			{
-				image: require('../assets/project.png'),
 			}, ],
 			exercise: [
 			{
@@ -167,9 +164,6 @@ const data = [
 				}, ],
 			},
 			{
-				image: require('../assets/pmi.png'),
-			},
-			{
 				text: 'PMBOK® é uma publicação que, atualmente encontra-se em sua 6º versão e nos fornece uma visão geral sobre o Gerenciamento de Projetos. Trata-se de um guia e, por este motivo não encontramos informações ou descrições completas nele e sim apenas explicações vagas sobre as melhores práticas realizadas pelo mercado.',
 			},
 			{
@@ -295,4 +289,6 @@ const data = [
 			concept: 'Modelo de Capacidade',
 		}, ],
 	}, ]
-	export default MainData
+	export default {
+data,
+}
