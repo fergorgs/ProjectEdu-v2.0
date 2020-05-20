@@ -10,14 +10,14 @@ import * as firebase from 'firebase'
 //Detemine Budget
 //Control Costs
 
-class CostManagementList extends React.Component {
+class scr_subModuleList extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      listCost:[],
+      //listCost:[],
       listData:[],
-      checkCount: 0
+      checkCount: 0,
     }
   }
   
@@ -62,6 +62,13 @@ class CostManagementList extends React.Component {
     //console.log(this.state.listData)
   }
 
+  componentDidUpdate(){
+
+    // if(this.props.navigation.state.params != undefined){
+    //   this.setState({subTopics: this.props.navigation.state.params.subTopics})
+    // }
+  }
+
   selectNodeStyle(level){
 
     if(level == 1) 
@@ -72,8 +79,13 @@ class CostManagementList extends React.Component {
   
   render() {
 
-    const list = this.state.listCost
-    const data = this.state.listData
+    const { params } = this.props.navigation.state;
+    const subTopics = params ? params.subTopics : null;
+
+    const data = subTopics.map((subTopic, index)=> {
+
+      return ({title: subTopic.concept, id: index})
+    })
 
     //console.log(data)
     
@@ -124,7 +136,12 @@ class CostManagementList extends React.Component {
           getChildrenName={(node) => 'items'}
           onNodePressed={(node) => {
 
-            this.props.navigation.navigate('TopicSwiper')
+            console.log("sent title: " + subTopics.concept)
+            this.props.navigation.navigate('TopicSwiper', {
+              iconcept:subTopics[node.id].IConceptImpl,
+              topicTitle:subTopics[node.id].concept
+            });
+            
 
             //switch(node.idName){
 
@@ -218,7 +235,7 @@ class CostManagementList extends React.Component {
     );
   }
 }
-export default CostManagementList;
+export default scr_subModuleList;
 
 const styles = StyleSheet.create({
   container: {

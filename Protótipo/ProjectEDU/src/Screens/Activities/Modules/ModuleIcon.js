@@ -9,7 +9,7 @@ render() {
     return (
 
             //<View></View>
-        <TouchableOpacity style={styles.card} onPress={() => {this.clickEventListener(item)}}>
+        <TouchableOpacity style={styles.card} onPress={()=> this.props.ClickEventListener(this.props.Item)}>
             <View style={styles.cardContent}>
               <Text style={styles.name}>{this.props.Item.name}</Text>
     <TouchableOpacity style={styles.followButtonPlay} onPress={()=> this.props.ClickEventListener(this.props.Item)}>

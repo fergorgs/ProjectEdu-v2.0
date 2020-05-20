@@ -66,13 +66,6 @@ class  TopicPage extends React.Component {
 
 //     this.props.navigation.navigate("ListCostManagement")
 //   }
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      texts: ['Texto 1', 'Texto 2', 'Texto 2']
-    };
-  }
      
   render() {
   
@@ -97,7 +90,7 @@ class  TopicPage extends React.Component {
            </View>
              {/*Button - Go to Module Estimating Theory - Inputs */}
              <TouchableHighlight style={[styles.buttonContainer, styles.activitiesButton]} 
-               onPress={/*() => {this.finishSubTopic("Estimating", "EST_TypesOfCosts")}*/}>
+               onPress={() => {this.props.navigation.navigate('ListSubModule')}/*() => {this.finishSubTopic("Estimating", "EST_TypesOfCosts")}*/}>
                  <Text style={styles.buttonText}>Continue studying</Text>
              </TouchableHighlight>
              

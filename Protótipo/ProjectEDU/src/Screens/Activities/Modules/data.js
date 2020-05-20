@@ -18,6 +18,9 @@ export const data = [
 			},
 			{
 				text: 'Quality, in turn, should be defined before starting the project with the customer. Only he will be able to define what quality is.',
+			},
+			{ 
+				image: require ('./teste.png'),  
 			}, ],
 			exercise: [
 			{

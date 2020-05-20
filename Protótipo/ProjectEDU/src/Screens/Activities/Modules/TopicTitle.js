@@ -13,8 +13,8 @@ class  TopicTitle extends React.Component {
     return (
 
         <View style={styles.topicTitle}>
-            <Text>
-                TITULO
+            <Text style={{fontSize:40, textAlign:"center"}}>
+                {this.props.topicTitle}
             </Text>
         </View>
         )
@@ -23,6 +23,7 @@ class  TopicTitle extends React.Component {
 
 const styles = StyleSheet.create({
     
+
     topicTitle:{
         
         flex:1,
@@ -30,7 +31,7 @@ const styles = StyleSheet.create({
         alignItems:"center",
         textAlignVertical: "center",
         backgroundColor:"#0abde3",
-        fontSize: 40
+        //fontSize: 100
     }
   });
   

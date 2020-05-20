@@ -5,6 +5,7 @@ import Swiper from 'react-native-swiper';
 import { createDrawerNavigator} from 'react-navigation'
 import TopicPage from './TopicPage'
 import TopicTitle from './TopicTitle'
+import TopicEnd from './TopicEnd'
 
 //Project Cost Management - Module Estimating - Inputs
 class  PCM_EstimatingInputsScreen extends React.Component {
@@ -69,6 +70,26 @@ class  PCM_EstimatingInputsScreen extends React.Component {
   }
      
     render() {
+
+    const { params } = this.props.navigation.state;
+    const topicTitle = params ? params.topicTitle : null;
+    const iconcept = params ? params.iconcept : null;
+
+    const temp = iconcept.map((page) => {
+
+      //if(page.text)
+      return <TopicPage headerText={topicTitle} pageContent={page} navigation={this.props.navigation}></TopicPage>
+      //else
+      //return <TopicPage text={"Image place holder"}></TopicPage>
+    })
+
+    const pages = [<TopicTitle topicTitle={topicTitle}></TopicTitle>]
+
+    for(i = 0; i < temp.length; i++){
+      pages.push(temp[i])
+    }
+
+    pages.push(<TopicEnd navigation={this.props.navigation}></TopicEnd>)
   
     return (
     //Swiper for the Screens
@@ -77,9 +98,7 @@ class  PCM_EstimatingInputsScreen extends React.Component {
         autoplay={false}
         loop = {true}
     >
-      <TopicTitle></TopicTitle>
-      <TopicPage></TopicPage>
-      <TopicEnd></TopicEnd>
+      {pages}
 {/*Screen with Inputs - First Screen */}
 {/* <View style={styles.container}>
         

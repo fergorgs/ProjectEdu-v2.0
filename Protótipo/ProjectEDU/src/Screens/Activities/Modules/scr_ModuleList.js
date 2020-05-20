@@ -26,11 +26,14 @@ export default class scr_ModuleList extends Component {
       }  
     )})
   }
+  
 
-  //Function responsible for navigating between modules
   clickEventListener = (item) => {
-    this.props.navigation.navigate('subModule', {subModule:item.concepts})
+    this.props.navigation.navigate('subModules', {
+      subTopics:item.concepts
+    });
   }
+
     
 
   render() {
@@ -92,6 +95,7 @@ const styles = StyleSheet.create({
   },
   contentList:{
     flex:1,
+    paddingBottom:20
   },
   cardContent: {
     marginLeft:20,
