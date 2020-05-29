@@ -1,6 +1,7 @@
 import { createStackNavigator} from 'react-navigation';
 import ListSubModuleScreen from './scr_subModuleList';
 import topicSwiperScreen from './scr_topicSwiper';
+import topicActivitiesScreen from './TopicActivities';
 // //Instroduction screens
 // import IntroductionTheoryScreen from './Module3/ProjectCostManagement/Introduction/IntroductionTheory';
 // import IntroductionAcitivitiesScreen from './Module3/ProjectCostManagement/Introduction/IntroductionActivities';
@@ -50,6 +51,12 @@ export default createStackNavigator({
     screen: topicSwiperScreen,
     navigationOptions: {
       title: "Topic Swiper"
+    }
+  },
+  TopicActivities: {
+    screen: topicActivitiesScreen,
+    navigationOptions: {
+      title: "Topic Activities"
     }
   },
   //INTRODUCTION---------------------------------------------

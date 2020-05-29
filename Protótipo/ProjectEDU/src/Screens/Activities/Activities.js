@@ -10,7 +10,6 @@ class Activities extends Component {
    render() {
       return (
 
-    
       <ScrollView>
           {/* Screen Header Information*/}
         <Header

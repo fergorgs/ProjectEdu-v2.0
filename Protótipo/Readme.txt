@@ -26,3 +26,8 @@ react-native-nested-listview <-- new
 //project.edux.app@gmail.com
 //projectedu1234
 
+//Email and password for expo client
+//User: projectedu
+//Pass: projectedu1234
+
+

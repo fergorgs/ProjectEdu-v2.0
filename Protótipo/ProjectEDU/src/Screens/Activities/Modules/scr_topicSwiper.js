@@ -10,64 +10,64 @@ import TopicEnd from './TopicEnd'
 //Project Cost Management - Module Estimating - Inputs
 class  PCM_EstimatingInputsScreen extends React.Component {
 
-  finishSubTopic(mainTopic, subTopic){
+  // finishSubTopic(mainTopic, subTopic){
 
-    mainTopicIsValid = false
-    subTopicIsValid = false
+  //   mainTopicIsValid = false
+  //   subTopicIsValid = false
 
-    //checks if the maintopic and subtopic are non null
-    if(mainTopic == null || subTopic == null){
-      alert("Faild to update data base\nMain Topic or Sub Topic null")
-      return
-    }
+  //   //checks if the maintopic and subtopic are non null
+  //   if(mainTopic == null || subTopic == null){
+  //     alert("Faild to update data base\nMain Topic or Sub Topic null")
+  //     return
+  //   }
 
-    //checks if the main topic exists in the data base and gets its reference
-    let userid = firebase.auth().currentUser.uid
-    let userRef = firebase.database().ref("/module3/Project Cost Management/" + userid)
+  //   //checks if the main topic exists in the data base and gets its reference
+  //   let userid = firebase.auth().currentUser.uid
+  //   let userRef = firebase.database().ref("/module3/Project Cost Management/" + userid)
 
-    userRef.once('value', (snapshot) => {
-      if (snapshot.hasChild(mainTopic))
-        mainTopicIsValid = true
-    });
+  //   userRef.once('value', (snapshot) => {
+  //     if (snapshot.hasChild(mainTopic))
+  //       mainTopicIsValid = true
+  //   });
 
-    if(!mainTopicIsValid){
-      alert("\nMain topic is undefined\n(" + mainTopic + ") is not a valid argument")
-      return
-    }
+  //   if(!mainTopicIsValid){
+  //     alert("\nMain topic is undefined\n(" + mainTopic + ") is not a valid argument")
+  //     return
+  //   }
 
-    let topicRef = firebase.database().ref("/module3/Project Cost Management/" + userid + "/" + mainTopic)
+  //   let topicRef = firebase.database().ref("/module3/Project Cost Management/" + userid + "/" + mainTopic)
     
     
-    //checks if the sub topic exists in the data base and gets its reference
-    topicRef.once('value', (snapshot) => {
-      if (snapshot.hasChild(subTopic))
-        subTopicIsValid = true
-    });
+  //   //checks if the sub topic exists in the data base and gets its reference
+  //   topicRef.once('value', (snapshot) => {
+  //     if (snapshot.hasChild(subTopic))
+  //       subTopicIsValid = true
+  //   });
 
-    if(!subTopicIsValid){
-      alert("\nSub topic is undefined\n(" + subTopic + ") is not a valid argument")
-      return
-    }
+  //   if(!subTopicIsValid){
+  //     alert("\nSub topic is undefined\n(" + subTopic + ") is not a valid argument")
+  //     return
+  //   }
 
-    let subTopicRef = firebase.database().ref("/module3/Project Cost Management/" + userid + "/" + mainTopic + "/" + subTopic)
+  //   let subTopicRef = firebase.database().ref("/module3/Project Cost Management/" + userid + "/" + mainTopic + "/" + subTopic)
 
-    //marks the subtopic as completed
-    subTopicRef.update({checkmark: true})
+  //   //marks the subtopic as completed
+  //   subTopicRef.update({checkmark: true})
 
-    //checks if all subtopics are completed
-    allChecked = true
+  //   //checks if all subtopics are completed
+  //   allChecked = true
     
-    topicRef.orderByChild("id").on("child_added", (data) => {
-      if(data.val().displayTitle != null && !data.val().checkmark){
-        allChecked = false
-      }
-    })
+  //   topicRef.orderByChild("id").on("child_added", (data) => {
+  //     if(data.val().displayTitle != null && !data.val().checkmark){
+  //       allChecked = false
+  //     }
+  //   })
 
-    //marks the main topic as completed, if all the subtopics have been completed
-    topicRef.update({checkmark: allChecked})
+  //   //marks the main topic as completed, if all the subtopics have been completed
+  //   topicRef.update({checkmark: allChecked})
 
-    this.props.navigation.navigate("ListCostManagement")
-  }
+  //   this.props.navigation.navigate("ListCostManagement")
+  // }
      
     render() {
 
@@ -77,10 +77,7 @@ class  PCM_EstimatingInputsScreen extends React.Component {
 
     const temp = iconcept.map((page) => {
 
-      //if(page.text)
       return <TopicPage headerText={topicTitle} pageContent={page} navigation={this.props.navigation}></TopicPage>
-      //else
-      //return <TopicPage text={"Image place holder"}></TopicPage>
     })
 
     const pages = [<TopicTitle topicTitle={topicTitle}></TopicTitle>]
@@ -99,74 +96,6 @@ class  PCM_EstimatingInputsScreen extends React.Component {
         loop = {true}
     >
       {pages}
-{/*Screen with Inputs - First Screen */}
-{/* <View style={styles.container}>
-        
-        <View style = {{ alignItems:"center"}}>
-        <LessonHeader centerText='Estimate Costs' navigation={this.props.navigation}/>
-        </View>
-
-        <Text style={styles.textTitle}>
-           Inputs
-        </Text>
-        <Text style={styles.textInfo}>
-          Scope Baseline
-        </Text>
-        <Text style={styles.textInfo}>
-           Project Schedule
-        </Text>
-        <Text style={styles.textInfo}>
-          Human Resource Plan
-        </Text>
-        <Text style={styles.textInfo}>
-          Risk Register
-        </Text>
-        <Text style={styles.textInfo}>
-          Enterprise Enviromental Factors
-        </Text>
-        <Text style={styles.textInfo}>
-          Organizational Process Assets
-        </Text>
-        <View style={styles.containerImages}>
-          <Image
-              resizeMode = "contain"
-              style={{
-                width: 250, 
-                height: 200
-              }}
-              source={{uri: 'https://vmguru.com/wp-content/uploads/2018/10/inputs.png'}}
-          />
-        </View>
-        
-      </View> */}
-
-      {/*Last Screen - Project Cost Management - Module Estimating - Inputs */}
-      {/* <View style={{
-         flex:1,
-         width:Dimensions.get("window").width,
-         //justifyContent: 'center',
-         alignItems:"center",
-         backgroundColor:"#97CAE5"
-      }}>
-        <View style = {{alignItems:"center",}}>
-        <LessonHeader centerText='Estimate Costs' navigation={this.props.navigation}/>
-        </View>
-        
-        <View style = {{alignItems:"center",marginTop:40}}>
-          <Icon 
-              name='work'
-              size = {300}
-          />
-        </View> */}
-          
-          {/*Button for Project Cost Management - Module Estimating - Tools */}
-          {/* <TouchableHighlight style={[styles.buttonContainer, styles.activitiesButton]} 
-            onPress={() => {this.finishSubTopic("Estimating", "EST_Inputs")}}>
-              <Text style={styles.buttonText}>Continue studying</Text>
-          </TouchableHighlight>
-          
-      </View> */}
-
 
     </Swiper>
         )

@@ -21,7 +21,8 @@ export default class scr_ModuleList extends Component {
       obj = {
         id:index,
         name:subModule.moduleContent,
-        concepts:subModule.concepts
+        concepts:subModule.concepts,
+        exercises:subModule.exercise
         //navegation:"subModules"
       }  
     )})
@@ -29,8 +30,15 @@ export default class scr_ModuleList extends Component {
   
 
   clickEventListener = (item) => {
+
+    //console.log("item.name: " + item.name)
+    //console.log("item.concepts: " + item.concepts)
+    //console.log("item.exercises: " + item.exercises)
+
     this.props.navigation.navigate('subModules', {
-      subTopics:item.concepts
+      moduleTitle:item.name,
+      subTopics:item.concepts,
+      subActivities:item.exercises
     });
   }
 
@@ -51,7 +59,7 @@ export default class scr_ModuleList extends Component {
             }}
             centerComponent={{ text: 'Test Module', style: { color: '#fff' } }}
         />
-        {/*Renders Module 3 List Activities with a FlatList */}
+        {/*Renders Module List Activities with a FlatList */}
         <View style={styles.container}>
         <FlatList 
           style={styles.contentList}
@@ -63,15 +71,6 @@ export default class scr_ModuleList extends Component {
           renderItem={({item}) => {
           return (
             <ModuleIcon Item={item} ClickEventListener={this.clickEventListener}/>
-            // <TouchableOpacity style={styles.card} onPress={() => {this.clickEventListener(item)}}>
-            //   <Image style={styles.image} source={{uri: item.image}}/>
-            //   <View style={styles.cardContent}>
-            //     <Text style={styles.name}>{item.name}</Text>
-            //     <TouchableOpacity style={styles.followButtonPlay} onPress={()=> this.clickEventListener(item)}>
-            //         <Image style={styles.imagePlay} source={{uri:"https://images.vexels.com/media/users/3/135176/isolated/preview/a6508e565d25ab01f79a35c4319e0083-jogar-bot--o---cone-plana-by-vexels.png"}}/>
-            //     </TouchableOpacity>
-            //   </View>
-            // </TouchableOpacity>
           )}}/>
       </View>
 

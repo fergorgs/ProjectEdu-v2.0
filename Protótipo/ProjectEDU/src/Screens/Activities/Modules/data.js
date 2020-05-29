@@ -20,7 +20,7 @@ export const data = [
 				text: 'Quality, in turn, should be defined before starting the project with the customer. Only he will be able to define what quality is.',
 			},
 			{ 
-				image: require ('./teste.png'),  
+				image: require ('./teste.png'),
 			}, ],
 			exercise: [
 			{
@@ -34,7 +34,23 @@ export const data = [
 					id: Math.random(),
 					subText: '2) item 2',
 				}, ],
-			}, ],
+			},
+			{
+				text: '2) questao teste',
+				exercices: [
+				{
+					id: Math.random(),
+					subText: '1) item 1',
+				},
+				{
+					id: Math.random(),
+					subText: '2) item 2',
+				},
+				{
+					id: Math.random(),
+					subText: 'Item 3',
+				}, ],
+			} ],
 			CollaborativeActivity: [
 			{},
 			{}, ],
