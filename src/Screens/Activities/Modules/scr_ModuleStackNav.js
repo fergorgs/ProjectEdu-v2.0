@@ -4,8 +4,6 @@ import subModuleStackNavegator from "./scr_subModuleStackNav"
 import MaintenanceModule3Screen from './Module3/MaintenanceModule3'
 
 export default createStackNavigator({
-
-  //Stack Navigator with all Module 3 Main Screens
   
   Module: {
     screen: ListModuleScreen,

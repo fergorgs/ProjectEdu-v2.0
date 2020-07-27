@@ -8,6 +8,7 @@ import {
   Image,
   Alert,
   TouchableHighlight,
+  ScrollView,
   KeyboardAvoidingView
 } from 'react-native';
 import * as firebase from 'firebase';
@@ -271,8 +272,9 @@ export default class SignIn extends Component {
         )
       }  
     return (
-      <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
 
+      <KeyboardAvoidingView style={styles.container} behavior="height" enabled>
+          
          {/*Renders logo ProjectEDU*/}
         <Image
           resizeMode = "contain"

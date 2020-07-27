@@ -34,6 +34,22 @@ export const data = [
 					id: Math.random(),
 					subText: '2) item 2',
 				}, ],
+			},
+			{
+				text: '2) questao teste',
+				exercices: [
+				{
+					id: Math.random(),
+					subText: '1) item 1',
+				},
+				{
+					id: Math.random(),
+					subText: '2) item 2',
+				},
+				{
+					id: Math.random(),
+					subText: '3) item 3',
+				}, ],
 			}, ],
 			CollaborativeActivity: [
 			{},
@@ -74,26 +90,65 @@ export const data = [
 					id: Math.random(),
 					subText: '- Implantação de um Call Center;',
 				}, ],
+			}, 
+			{ 
+				image: require ('./teste.png'),  
 			}, ],
 			exercise: [
 			{
-				text: '1) questao teste',
+				text: 'Test question 1',
 				exercices: [
 				{
 					id: Math.random(),
-					subText: '1) item 1',
+					subText: 'Option 1',
 				},
 				{
 					id: Math.random(),
-					subText: '2) item 2',
+					subText: 'Option 2',
 				},
 				{
 					id: Math.random(),
-					subText: '3) item 3',
+					subText: 'Option 3',
 				},
 				{
 					id: Math.random(),
-					subText: '4) item 4',
+					subText: 'Option 4',
+				}, ],
+			},
+			{
+				text: 'Test question 2',
+				exercices: [
+				{
+					id: Math.random(),
+					subText: 'Opition 1',
+				},
+				{
+					id: Math.random(),
+					subText: 'Opition 2',
+				},
+				{
+					id: Math.random(),
+					subText: 'Opition 3',
+				}, ],
+			},
+			{
+				text: 'Test question 3',
+				exercices: [
+				{
+					id: Math.random(),
+					subText: 'Opition 1',
+				},
+				{
+					id: Math.random(),
+					subText: 'Opition 2',
+				},
+				{
+					id: Math.random(),
+					subText: 'Opition 3',
+				},
+				{
+					id: Math.random(),
+					subText: 'Opition 4',
 				}, ],
 			}, ],
 		},

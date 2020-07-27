@@ -88,10 +88,10 @@ class  TopicPage extends React.Component {
                  size = {300}
              />
            </View>
-             {/*Button - Go to Module Estimating Theory - Inputs */}
+           
              <TouchableHighlight style={[styles.buttonContainer, styles.activitiesButton]} 
                onPress={() => {this.props.navigation.navigate('ListSubModule')}/*() => {this.finishSubTopic("Estimating", "EST_TypesOfCosts")}*/}>
-                 <Text style={styles.buttonText}>Continue studying</Text>
+                 <Text style={styles.buttonText}>Finish topic</Text>
              </TouchableHighlight>
              
          </View>

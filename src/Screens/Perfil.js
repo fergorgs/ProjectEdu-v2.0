@@ -86,7 +86,7 @@ export default class Perfil extends Component {
                 Ranking
                 Settings
               */}
-            <View style = {{flexDirection:"row",marginTop:70, alignItems:"center"}}>
+            {/* <View style = {{flexDirection:"row",marginTop:70, alignItems:"center"}}>
                 <TouchableOpacity style={styles.followButtonPlay}
                      onPress={() => {this.props.navigation.navigate("Activities")}}
                 >
@@ -127,7 +127,7 @@ export default class Perfil extends Component {
                         </Text>
                     </View>
                 </TouchableOpacity>
-            </View> 
+            </View>  */}
                 
             </View>
         </View>

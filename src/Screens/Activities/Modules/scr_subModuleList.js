@@ -85,20 +85,32 @@ class scr_subModuleList extends React.Component {
     let data = null
 
     if(subTopics != null){
-      data = subTopics.map((subTopic, index)=> {
+      data = subTopics.map((subTopic, index) => {
 
-        return ({title: subTopic.concept, id: index})
+        let subTopicItems = []
+        if(subTopic.IConceptImpl)
+          subTopicItems.push({title: 'Theory',
+                              id: index,
+                              type: 1})
+        if(subTopic.exercise)
+          subTopicItems.push({title: 'Activities',
+                              id: index,
+                              type: 2})
+
+        if(subTopicItems.length == 0)
+          subTopicItems.push({title: 'No content yet',
+                              id: index,
+                              type: 3})
+
+        return ({title: subTopic.concept, 
+                type: 0,
+                items: subTopicItems,
+        })
       })
     }
-    //console.log(data)
+   
+    //original data array for reference, if needed
     
-    // console.log(this.state.checkCount + ") " + typeof(data));
-
-    // aux = this.state.checkCount
-    // aux += 1
-
-    // this.setState({checkCount: aux})
-
     /*const data = [{title: '✓  Introduction', 
                     items: [{title: 'Introdutory video', id: 1}, 
                     {title: 'Content overall', id: 2},
@@ -109,18 +121,6 @@ class scr_subModuleList extends React.Component {
                     {title: 'Tools and Techniques', id: 6},
                     {title: 'Outputs', id: 7},
                     {title: 'Activities', id: 8}]},
-                  {title: 'Budgeting', 
-                    items: [{title: 'Introduction', id: 9}, 
-                    {title: 'Inputs', id: 10},
-                    {title: 'Tools and Techniques', id: 11},
-                    {title: 'Outputs', id: 12},
-                    {title: 'Activities', id: 13}]},
-                  {title: 'Controlling', 
-                    items: [{title: 'Introduction', id: 14}, 
-                    {title: 'Inputs', id: 15},
-                    {title: 'Tools and Techniques', id: 16},
-                    {title: 'Outputs', id: 17},
-                    {title: 'Activities', id: 18}]}
                   ]*/
     
     let theory
@@ -132,11 +132,21 @@ class scr_subModuleList extends React.Component {
         getChildrenName={(node) => 'items'}
         onNodePressed={(node) => {
 
-          console.log("sent title: " + subTopics.concept)
-          this.props.navigation.navigate('TopicSwiper', {
-            iconcept:subTopics[node.id].IConceptImpl,
-            topicTitle:subTopics[node.id].concept
-          });
+          // console.log("sent title: " + subTopics.concept)
+          if(node.type == 1)
+          {
+            this.props.navigation.navigate('TopicSwiper', {
+              iconcept:subTopics[node.id].IConceptImpl,
+              topicTitle:subTopics[node.id].concept
+            });
+          }
+          else if(node.type == 2)
+          {
+            this.props.navigation.navigate('Exercises', {
+              questions:subTopics[node.id].exercise,
+              topicTitle:subTopics[node.id].concept
+            });
+          }
         }}
         renderNode={(node, level) => (
           <NestedRow
@@ -158,7 +168,7 @@ class scr_subModuleList extends React.Component {
           leftComponent={{
           icon: 'arrow-back',
           color: '#fff',
-          onPress: () => this.props.navigation.navigate("Module_3"),
+          onPress: () => this.props.navigation.navigate("Module"),
           }}
           centerComponent={{ text: 'Sub Module Topics', style: { color: '#fff' } }}
         />
@@ -181,16 +191,19 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.5,
     borderColor: 'gray',
     fontSize: 7.5,
-    padding: 10,
+    padding: 15,
   },
 
   subNode: {
     borderBottomWidth: 0.5,
-    borderColor: 'gray'
+    borderColor: 'gray',
+    fontSize: 7.5,
+    padding: 15,
   },
 
   noNodeText: {
-    fontSize: 12.5,
+    margin: 5,
+    fontSize: 25,
     textAlign: "center"
   }
 });
